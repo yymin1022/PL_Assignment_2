@@ -1,13 +1,28 @@
 import sys
 
+code = ""
+functions = []
+
 def main(argv):
+    global code
+
     scriptFile = open(argv[1], "r")
 
-    inputString = ""
     for curLine in scriptFile.readlines():
-        inputString += curLine.strip()
+        code += curLine.strip()
 
     scriptFile.close()
+
+    getFunction()
+
+
+def getFunction():
+    global code, functions
+
+    functions = code.split("}")
+
+    for function in functions:
+        print(function)
 
 
 if __name__ == "__main__":
