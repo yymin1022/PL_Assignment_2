@@ -58,7 +58,7 @@ def defVariables(statement, idx):
             word = word[:-1]
         functions[idx][2].append(word)
 
-    runtimeStack[-1][functions[idx][0]]["Local Variables"] = functions[idx][2]
+    runtimeStack[-1][functions[idx][0]]["LV"] = functions[idx][2]
 
 
 def runFunction(idx):
@@ -80,18 +80,18 @@ def runStatement(idx, stmt):
     elif stmt[0] == "call":
         for i in range(len(functions)):
             if functions[i][0] == stmt[1]:
-                runtimeStack.append({functions[i][0]: {"Return Address": functions[idx][0]}})
+                runtimeStack.append({functions[i][0]: {"RA": functions[idx][0]}})
                 runFunction(i)
     elif stmt[0] == "print_ari":
         for runtime in reversed(runtimeStack):
             for key in runtime:
                 print(f"{key}:")
 
-                for item in reversed(runtime[key]["Local Variables"]):
+                for item in reversed(runtime[key]["LV"]):
                     print(f"  Local Variable: {item}")
 
-                if "ReturnAddress" in runtime[key]:
-                    print(f"  Return Address: {runtime[key]['Return Address']}")
+                if "RA" in runtime[key]:
+                    print(f"  Return Address: {runtime[key]['RA']}")
     else:
         print(f"{functions[idx][0]}:{stmt[0]} => VALUE ")
 
