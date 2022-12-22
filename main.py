@@ -89,10 +89,16 @@ def runStatement(idx, stmt):
         if runtimeStack[-1][functions[idx][0]]["DL"] >= 0:
             curDL = runtimeStack[-1][functions[idx][0]]["DL"] + len(list(runtimeStack[runtimeStack[-1][functions[idx][0]]['DL']].values())[0]['LV'])
 
+        isFunctionOK = False
         for i in range(len(functions)):
             if functions[i][0] == stmt[1]:
+                isFunctionOK = True
                 runtimeStack.append({functions[i][0]: {"RA": functions[idx][0], "DL": curDL}})
                 runFunction(i)
+
+        if not isFunctionOK:
+            print(f"Call to Undefined Function : {stmt[1]}")
+            exit(0)
     elif stmt[0] == "print_ari":
         for runtime in reversed(runtimeStack):
             for key in runtime:
@@ -112,9 +118,9 @@ def runStatement(idx, stmt):
 
         isVarFound = False
         for runtime in reversed(runtimeStack):
+            varLocalOffset = 0
             for func in functions:
                 if func[0] == list(runtime.keys())[0]:
-                    varLocalOffset = 0
                     for var in func[2]:
                         if var == varName:
                             isVarFound = True
