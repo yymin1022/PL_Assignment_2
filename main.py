@@ -77,14 +77,12 @@ def runStatement(idx, stmt):
     if stmt[0] == "variable":
         defVariables(stmt[1:], idx)
     elif stmt[0] == "call":
-        print(f"Called {stmt[1]} from {functions[idx][0]}")
         runtimeStack.append({"Return Address": functions[idx][0]})
 
         for i in range(len(functions)):
             if functions[i][0] == stmt[1]:
                 runFunction(i)
     elif stmt[0] == "print_ari":
-        print("Print Stack")
         print(runtimeStack)
     else:
         print(f"Print Variable {stmt[0]} from {functions[idx][0]}")
