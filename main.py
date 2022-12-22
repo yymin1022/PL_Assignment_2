@@ -107,8 +107,24 @@ def runStatement(idx, stmt):
     else:
         varFrom = functions[idx][0]
         varName = stmt[0]
-        varValue = "VALUE"
-        print(f"{varFrom}:{varName} => {varValue}")
+        varLinkCnt = 0
+        varLocalOffset = 0
+
+        isVarFound = False
+        for runtime in reversed(runtimeStack):
+            for func in functions:
+                if func[0] == list(runtime.keys())[0]:
+                    varLocalOffset = 0
+                    for var in func[2]:
+                        if var == varName:
+                            isVarFound = True
+                            break
+                        varLocalOffset += 1
+            if isVarFound:
+                break
+            varLinkCnt += 1
+
+        print(f"{varFrom}:{varName} => {varLinkCnt}:{varLocalOffset}")
 
 
 if __name__ == "__main__":
