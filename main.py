@@ -49,7 +49,7 @@ def getFunctions():
 
         for j in range(len(functions)):
             if i != j and functions[j][0] == functions[i][0]:
-                print(f"Duplicate Declaration of the Identifier or the Function Name : {functions[i][0]}")
+                print(f"Duplicate Declaration of the Function Name : {functions[i][0]}")
                 exit(0)
 
 
