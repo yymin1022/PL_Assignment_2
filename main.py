@@ -48,8 +48,19 @@ def checkFunctions(function):
     global functions
     curFunctionBody = function[1].split(";")
 
-    print(curFunctionBody)
+    for statement in curFunctionBody:
+        if statement.split(" ")[0] == "variable":
+            defVariables(statement)
+        else:
+            checkStatement(statement)
 
+
+def defVariables(statement):
+    print(statement)
+
+
+def checkStatement(statement):
+    print(statement)
 
 if __name__ == "__main__":
     main(sys.argv)
