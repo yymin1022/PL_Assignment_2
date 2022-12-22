@@ -81,6 +81,7 @@ def runStatement(idx, stmt):
         for i in range(len(functions)):
             if functions[i][0] == stmt[1]:
                 runtimeStack.append({functions[i][0]: {"RA": functions[idx][0]}})
+                runtimeStack[-1][functions[i][0]]["DL"] = len(runtimeStack) - 2
                 runFunction(i)
     elif stmt[0] == "print_ari":
         for runtime in reversed(runtimeStack):
@@ -89,6 +90,9 @@ def runStatement(idx, stmt):
 
                 for item in reversed(runtime[key]["LV"]):
                     print(f"  Local Variable: {item}")
+
+                if "DL" in runtime[key]:
+                    print(f"  Dynamic Link: {runtime[key]['DL']}")
 
                 if "RA" in runtime[key]:
                     print(f"  Return Address: {runtime[key]['RA']}")
