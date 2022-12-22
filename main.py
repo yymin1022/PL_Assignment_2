@@ -88,10 +88,10 @@ def runStatement(idx, stmt):
                 print(f"{key}:")
 
                 for item in reversed(runtime[key]["Local Variables"]):
-                    print(f"Local Variable: {item}")
+                    print(f"  Local Variable: {item}")
 
                 if "ReturnAddress" in runtime[key]:
-                    print(f"Return Address: {runtime[key]['Return Address']}")
+                    print(f"  Return Address: {runtime[key]['Return Address']}")
     else:
         print(f"{functions[idx][0]}:{stmt[0]} => VALUE ")
 
