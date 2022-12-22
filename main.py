@@ -48,8 +48,7 @@ def getFunctions():
 
 def checkFunctions(idx):
     global functions
-    curFunctionBody = functions[idx][1].split(";")
-    functions[idx][1] = curFunctionBody
+    functions[idx][1] = functions[idx][1].split(";")
 
 
 def defVariables(statement, idx):
