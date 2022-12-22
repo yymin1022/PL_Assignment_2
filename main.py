@@ -50,13 +50,17 @@ def checkFunctions(idx):
 
     for statement in curFunctionBody:
         if statement.split(" ")[0] == "variable":
-            defVariables(statement)
+            defVariables(statement, idx)
         else:
             checkStatement(statement)
 
 
-def defVariables(statement):
-    print(statement)
+def defVariables(statement, idx):
+    for word in statement.split(" "):
+        if word != "variable":
+            functions[idx][2].append(word)
+
+    print(functions[idx])
 
 
 def checkStatement(statement):
