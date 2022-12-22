@@ -24,7 +24,7 @@ def main(argv):
     for idx in range(len(functions)):
         checkFunctions(idx)
 
-    runtimeStack.append({functions[mainIdx][0]: {}})
+    runtimeStack.append({functions[mainIdx][0]: {"DL": -1, "RA": ""}})
     runFunction(mainIdx)
 
 
@@ -71,17 +71,21 @@ def runFunction(idx):
 
 
 def runStatement(idx, stmt):
-    global functions
+    global functions, runtimeStack
 
     stmt = stmt.split(" ")
 
     if stmt[0] == "variable":
         defVariables(stmt[1:], idx)
     elif stmt[0] == "call":
+        curDL = 0
+        if runtimeStack[-1][functions[idx][0]]["DL"] >= 0:
+            curDL = runtimeStack[-1][functions[idx][0]]["DL"] + len(list(runtimeStack[runtimeStack[-1][functions[idx][0]]['DL']].values())[0]['LV'])
+
         for i in range(len(functions)):
             if functions[i][0] == stmt[1]:
                 runtimeStack.append({functions[i][0]: {"RA": functions[idx][0]}})
-                runtimeStack[-1][functions[i][0]]["DL"] = len(runtimeStack) - 2
+                runtimeStack[-1][functions[i][0]]["DL"] = curDL
                 runFunction(i)
     elif stmt[0] == "print_ari":
         for runtime in reversed(runtimeStack):
@@ -91,10 +95,10 @@ def runStatement(idx, stmt):
                 for item in reversed(runtime[key]["LV"]):
                     print(f"  Local Variable: {item}")
 
-                if "DL" in runtime[key]:
+                if int(runtime[key]["DL"]) >= 0:
                     print(f"  Dynamic Link: {runtime[key]['DL']}")
 
-                if "RA" in runtime[key]:
+                if runtime[key]["RA"] != "":
                     print(f"  Return Address: {runtime[key]['RA']}")
     else:
         print(f"{functions[idx][0]}:{stmt[0]} => VALUE ")
