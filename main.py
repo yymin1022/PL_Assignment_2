@@ -101,8 +101,6 @@ def runStatement(idx, stmt):
 
                 if int(runtime[key]["DL"]) >= 0:
                     print(f"  Dynamic Link: {runtime[key]['DL']}")
-
-                if runtime[key]["RA"] != "":
                     print(f"  Return Address: {runtime[key]['RA']}")
     else:
         print(f"{functions[idx][0]}:{stmt[0]} => VALUE ")
