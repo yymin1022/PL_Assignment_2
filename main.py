@@ -60,7 +60,11 @@ def checkFunctions(idx):
 def defVariables(statement, idx):
     for word in statement.split(" "):
         if word != "variable":
+            if word[-1] == ",":
+                word = word[:-1]
             functions[idx][2].append(word)
+
+    print(functions[idx][2])
 
 
 def runFunction(idx):
