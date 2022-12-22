@@ -75,12 +75,18 @@ def runFunction(idx):
 
 
 def runStatement(stmt):
+    global functions
+
     stmt = stmt.split(" ")
 
     if stmt[0] == "variable":
         pass
     elif stmt[0] == "call":
         print(f"Called {stmt[1]}")
+
+        for idx in range(len(functions)):
+            if functions[idx][0] == stmt[1]:
+                runFunction(idx)
     elif stmt[0] == "print_ari":
         print("Print Stack")
     else:
