@@ -83,7 +83,15 @@ def runStatement(idx, stmt):
                 runtimeStack.append({functions[i][0]: {"Return Address": functions[idx][0]}})
                 runFunction(i)
     elif stmt[0] == "print_ari":
-        print(runtimeStack)
+        for runtime in reversed(runtimeStack):
+            for key in runtime:
+                print(f"{key}:")
+
+                for item in reversed(runtime[key]["Local Variables"]):
+                    print(f"Local Variable: {item}")
+
+                if "ReturnAddress" in runtime[key]:
+                    print(f"Return Address: {runtime[key]['Return Address']}")
     else:
         print(f"Print Variable {stmt[0]} from {functions[idx][0]}")
 
