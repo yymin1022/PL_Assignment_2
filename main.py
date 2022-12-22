@@ -13,16 +13,22 @@ def main(argv):
 
     scriptFile.close()
 
-    getFunction()
+    getFunctions()
 
 
-def getFunction():
+def getFunctions():
     global code, functions
 
     functions = code.split("}")
+    functions.pop(-1)
 
-    for function in functions:
-        print(function)
+    for i in range(len(functions)):
+        function = functions[i]
+        functionAnalyze = function.split("{")
+
+        functions[i] = [functionAnalyze[0], functionAnalyze[1]]
+
+    print(functions)
 
 
 if __name__ == "__main__":
