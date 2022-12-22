@@ -3,10 +3,10 @@ import sys
 code = ""
 functions = []
 
-isMainFunction = False
+mainIdx = -1
 
 def main(argv):
-    global code
+    global code, mainIdx
 
     scriptFile = open(argv[1], "r")
 
@@ -17,12 +17,12 @@ def main(argv):
 
     getFunctions()
 
-    if not isMainFunction:
+    if mainIdx < 0:
         print("No Starting Function")
 
 
 def getFunctions():
-    global code, functions, isMainFunction
+    global code, functions, mainIdx
 
     functions = code.split("}")
     functions.pop(-1)
@@ -35,11 +35,9 @@ def getFunctions():
         functionAnalyze[1] = functionAnalyze[1].rstrip()
 
         if functionAnalyze[0] == "main":
-            isMainFunction = True
+            mainIdx = i
 
         functions[i] = [functionAnalyze[0], functionAnalyze[1]]
-
-    print(functions)
 
 
 if __name__ == "__main__":
