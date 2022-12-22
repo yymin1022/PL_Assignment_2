@@ -60,8 +60,6 @@ def defVariables(statement, idx):
         if word != "variable":
             functions[idx][2].append(word)
 
-    print(functions[idx])
-
 
 def checkStatement(statement):
     print(statement)
