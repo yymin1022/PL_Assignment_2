@@ -74,6 +74,8 @@ def runFunction(idx):
         if stmt != "":
             runStatement(idx, stmt)
 
+    runtimeStack.pop()
+
 
 def runStatement(idx, stmt):
     global functions, runtimeStack
