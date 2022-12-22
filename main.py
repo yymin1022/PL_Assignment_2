@@ -64,8 +64,6 @@ def defVariables(statement, idx):
                 word = word[:-1]
             functions[idx][2].append(word)
 
-    print(functions[idx][2])
-
 
 def runFunction(idx):
     global functions
