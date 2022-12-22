@@ -2,8 +2,8 @@ import sys
 
 code = ""
 functions = []
-
 mainIdx = -1
+runtimeStack = []
 
 def main(argv):
     global code, mainIdx
@@ -49,20 +49,14 @@ def getFunctions():
 def checkFunctions(idx):
     global functions
     curFunctionBody = functions[idx][1].split(";")
-
-    for statement in curFunctionBody:
-        if statement.split(" ")[0] == "variable":
-            defVariables(statement, idx)
-
     functions[idx][1] = curFunctionBody
 
 
 def defVariables(statement, idx):
-    for word in statement.split(" "):
-        if word != "variable":
-            if word[-1] == ",":
-                word = word[:-1]
-            functions[idx][2].append(word)
+    for word in statement:
+        if word[-1] == ",":
+            word = word[:-1]
+        functions[idx][2].append(word)
 
 
 def runFunction(idx):
@@ -80,7 +74,7 @@ def runStatement(idx, stmt):
     stmt = stmt.split(" ")
 
     if stmt[0] == "variable":
-        pass
+        defVariables(stmt[1:], idx)
     elif stmt[0] == "call":
         print(f"Called {stmt[1]} from {functions[idx][0]}")
 
