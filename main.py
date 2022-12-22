@@ -74,8 +74,8 @@ def runFunction(idx):
             runStatement(stmt)
 
 
-def runStatement(function):
-    print(function)
+def runStatement(stmt):
+    print(stmt)
 
 
 if __name__ == "__main__":
