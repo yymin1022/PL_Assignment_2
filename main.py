@@ -93,7 +93,7 @@ def runStatement(idx, stmt):
                 if "ReturnAddress" in runtime[key]:
                     print(f"Return Address: {runtime[key]['Return Address']}")
     else:
-        print(f"Print Variable {stmt[0]} from {functions[idx][0]}")
+        print(f"{functions[idx][0]}:{stmt[0]} => VALUE ")
 
 
 if __name__ == "__main__":
