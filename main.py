@@ -71,10 +71,10 @@ def runFunction(idx):
 
     for stmt in curFunction:
         if stmt != "":
-            runStatement(stmt)
+            runStatement(idx, stmt)
 
 
-def runStatement(stmt):
+def runStatement(idx, stmt):
     global functions
 
     stmt = stmt.split(" ")
@@ -82,15 +82,15 @@ def runStatement(stmt):
     if stmt[0] == "variable":
         pass
     elif stmt[0] == "call":
-        print(f"Called {stmt[1]}")
+        print(f"Called {stmt[1]} from {functions[idx][0]}")
 
-        for idx in range(len(functions)):
-            if functions[idx][0] == stmt[1]:
-                runFunction(idx)
+        for i in range(len(functions)):
+            if functions[i][0] == stmt[1]:
+                runFunction(i)
     elif stmt[0] == "print_ari":
         print("Print Stack")
     else:
-        print(f"Print Variable {stmt[0]}")
+        print(f"Print Variable {stmt[0]} from {functions[idx][0]}")
 
 
 if __name__ == "__main__":
