@@ -65,12 +65,18 @@ def defVariables(statement, idx):
     for word in statement:
         if word[-1] == ",":
             word = word[:-1]
-        functions[idx][2].append(word)
 
         for i in range(len(functions)):
             if word == functions[i][0]:
                 print(f"Duplicate Declaration of the Identifier or the Function Name : {word}")
                 exit(0)
+
+        for i in functions[idx][2]:
+            if i == word:
+                print(f"Duplicate Declaration of the Identifier or the Function Name : {word}")
+                exit(0)
+
+        functions[idx][2].append(word)
 
     runtimeStack[-1][functions[idx][0]]["LV"] = functions[idx][2]
 
