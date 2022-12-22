@@ -5,8 +5,9 @@ functions = []
 mainIdx = -1
 runtimeStack = []
 
+
 def main(argv):
-    global code, mainIdx
+    global code, mainIdx, runtimeStack
 
     scriptFile = open(argv[1], "r")
 
@@ -49,10 +50,13 @@ def getFunctions():
 
 def checkFunctions(idx):
     global functions
+
     functions[idx][1] = functions[idx][1].split(";")
 
 
 def defVariables(statement, idx):
+    global functions, runtimeStack
+
     for word in statement:
         if word[-1] == ",":
             word = word[:-1]
@@ -63,6 +67,7 @@ def defVariables(statement, idx):
 
 def runFunction(idx):
     global functions
+
     curFunction = functions[idx][1]
 
     for stmt in curFunction:
@@ -84,8 +89,7 @@ def runStatement(idx, stmt):
 
         for i in range(len(functions)):
             if functions[i][0] == stmt[1]:
-                runtimeStack.append({functions[i][0]: {"RA": functions[idx][0]}})
-                runtimeStack[-1][functions[i][0]]["DL"] = curDL
+                runtimeStack.append({functions[i][0]: {"RA": functions[idx][0], "DL": curDL}})
                 runFunction(i)
     elif stmt[0] == "print_ari":
         for runtime in reversed(runtimeStack):
