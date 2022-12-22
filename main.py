@@ -3,7 +3,7 @@ import sys
 code = ""
 functions = []
 mainIdx = -1
-runtimeStack = [{}]
+runtimeStack = []
 
 def main(argv):
     global code, mainIdx
@@ -24,6 +24,7 @@ def main(argv):
     for idx in range(len(functions)):
         checkFunctions(idx)
 
+    runtimeStack.append({functions[mainIdx][0]: {}})
     runFunction(mainIdx)
 
 
@@ -57,7 +58,7 @@ def defVariables(statement, idx):
             word = word[:-1]
         functions[idx][2].append(word)
 
-    runtimeStack[-1]["Local Variables"] = functions[idx][2]
+    runtimeStack[-1][functions[idx][0]]["Local Variables"] = functions[idx][2]
 
 
 def runFunction(idx):
@@ -77,10 +78,9 @@ def runStatement(idx, stmt):
     if stmt[0] == "variable":
         defVariables(stmt[1:], idx)
     elif stmt[0] == "call":
-        runtimeStack.append({"Return Address": functions[idx][0]})
-
         for i in range(len(functions)):
             if functions[i][0] == stmt[1]:
+                runtimeStack.append({functions[i][0]: {"Return Address": functions[idx][0]}})
                 runFunction(i)
     elif stmt[0] == "print_ari":
         print(runtimeStack)
