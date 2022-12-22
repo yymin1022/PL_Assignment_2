@@ -67,7 +67,13 @@ def runFunction(idx):
     global functions
     curFunction = functions[idx][1]
 
-    print(curFunction)
+    for stmt in curFunction:
+        if stmt != "":
+            runStatement(stmt)
+
+
+def runStatement(function):
+    print(function)
 
 
 if __name__ == "__main__":
