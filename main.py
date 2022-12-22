@@ -130,6 +130,10 @@ def runStatement(idx, stmt):
                 break
             varLinkCnt += 1
 
+        if not isVarFound:
+            print(f"Call to Undefined Variable : {varName}")
+            exit(0)
+
         print(f"{varFrom}:{varName} => {varLinkCnt}:{varLocalOffset}")
 
 
