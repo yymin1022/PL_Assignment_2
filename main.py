@@ -21,8 +21,8 @@ def main(argv):
         print("No Starting Function")
         return
 
-    for function in functions:
-        checkFunctions(function)
+    for idx in range(len(functions)):
+        checkFunctions(idx)
 
 
 def getFunctions():
@@ -44,9 +44,9 @@ def getFunctions():
         functions[i] = [functionAnalyze[0], functionAnalyze[1]]
 
 
-def checkFunctions(function):
+def checkFunctions(idx):
     global functions
-    curFunctionBody = function[1].split(";")
+    curFunctionBody = functions[idx][1].split(";")
 
     for statement in curFunctionBody:
         if statement.split(" ")[0] == "variable":
