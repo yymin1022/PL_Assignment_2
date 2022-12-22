@@ -75,7 +75,16 @@ def runFunction(idx):
 
 
 def runStatement(stmt):
-    print(stmt)
+    stmt = stmt.split(" ")
+
+    if stmt[0] == "variable":
+        pass
+    elif stmt[0] == "call":
+        print(f"Called {stmt[1]}")
+    elif stmt[0] == "print_ari":
+        print("Print Stack")
+    else:
+        print("Print Variable")
 
 
 if __name__ == "__main__":
