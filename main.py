@@ -24,6 +24,8 @@ def main(argv):
     for idx in range(len(functions)):
         checkFunctions(idx)
 
+    runFunction(mainIdx)
+
 
 def getFunctions():
     global code, functions, mainIdx
@@ -52,11 +54,20 @@ def checkFunctions(idx):
         if statement.split(" ")[0] == "variable":
             defVariables(statement, idx)
 
+    functions[idx][1] = curFunctionBody
+
 
 def defVariables(statement, idx):
     for word in statement.split(" "):
         if word != "variable":
             functions[idx][2].append(word)
+
+
+def runFunction(idx):
+    global functions
+    curFunction = functions[idx][1]
+
+    print(curFunction)
 
 
 if __name__ == "__main__":
