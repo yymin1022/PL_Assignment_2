@@ -51,8 +51,6 @@ def checkFunctions(idx):
     for statement in curFunctionBody:
         if statement.split(" ")[0] == "variable":
             defVariables(statement, idx)
-        else:
-            checkStatement(statement)
 
 
 def defVariables(statement, idx):
@@ -60,10 +58,6 @@ def defVariables(statement, idx):
         if word != "variable":
             functions[idx][2].append(word)
 
-
-def checkStatement(statement):
-    print(statement)
-    
 
 if __name__ == "__main__":
     main(sys.argv)
