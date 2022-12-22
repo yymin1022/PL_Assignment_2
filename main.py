@@ -41,7 +41,7 @@ def getFunctions():
         if functionAnalyze[0] == "main":
             mainIdx = i
 
-        functions[i] = [functionAnalyze[0], functionAnalyze[1]]
+        functions[i] = [functionAnalyze[0], functionAnalyze[1], []]
 
 
 def checkFunctions(idx):
