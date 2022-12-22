@@ -103,7 +103,10 @@ def runStatement(idx, stmt):
                     print(f"  Dynamic Link: {runtime[key]['DL']}")
                     print(f"  Return Address: {runtime[key]['RA']}")
     else:
-        print(f"{functions[idx][0]}:{stmt[0]} => VALUE ")
+        varFrom = functions[idx][0]
+        varName = stmt[0]
+        varValue = "VALUE"
+        print(f"{varFrom}:{varName} => {varValue}")
 
 
 if __name__ == "__main__":
