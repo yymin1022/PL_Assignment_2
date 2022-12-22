@@ -90,7 +90,7 @@ def runStatement(stmt):
     elif stmt[0] == "print_ari":
         print("Print Stack")
     else:
-        print("Print Variable")
+        print(f"Print Variable {stmt[0]}")
 
 
 if __name__ == "__main__":
