@@ -63,6 +63,7 @@ def defVariables(statement, idx):
 
 def checkStatement(statement):
     print(statement)
+    
 
 if __name__ == "__main__":
     main(sys.argv)
